@@ -67,7 +67,7 @@ const AuditReport = () => {
       </div>
 
       <div className="report-variance-section">
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="report-variance-heading text-xl font-semibold">
           Inventory Variance
         </h2>
 

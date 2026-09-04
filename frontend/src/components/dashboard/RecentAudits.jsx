@@ -2,7 +2,7 @@ const RecentAudits = ({ audits }) => {
   return (
     <div className="rounded-2xl border border-slate-200/80 bg-white shadow-sm shadow-slate-200/40">
       <div className="flex items-center justify-between border-b border-slate-100 p-5">
-        <div>
+        <div className="recent-audits-heading">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Activity</p>
           <h2 className="mt-1 font-semibold text-slate-900">Recent audit results</h2>
         </div>

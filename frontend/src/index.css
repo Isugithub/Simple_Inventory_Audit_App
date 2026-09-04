@@ -726,6 +726,10 @@ select {
   margin-top: 2.5rem;
 }
 
+.report-variance-heading {
+  margin-bottom: 0.8rem;
+}
+
 .audit-heading,
 .section-heading {
   display: flex;
@@ -890,6 +894,10 @@ select {
   margin-top: 2rem;
 }
 
+.recent-audits-heading {
+  transform: translateX(0.4rem);
+}
+
 .dashboard-actions {
   display: flex;
   flex-wrap: wrap;
@@ -989,6 +997,22 @@ select {
 .stat-icon-indigo { background: #eef2ff; color: #4f46e5; }
 .stat-icon-slate { background: #f1f5f9; color: #475569; }
 
+.stat-card-header {
+  position: relative;
+  margin-top: 0.2rem;
+}
+
+.stat-card-arrow {
+  position: absolute;
+  top: 0.15rem;
+  right: 0;
+}
+
+.stat-card {
+  padding-top: 1.2rem !important;
+  padding-bottom: 1.15rem !important;
+}
+
 .stat-card-title,
 .stat-card-value,
 .stat-card-description {
@@ -1007,6 +1031,7 @@ select {
 
 .stat-card-description {
   color: #64748b;
+  margin-bottom: 0.15rem;
 }
 
 button {
