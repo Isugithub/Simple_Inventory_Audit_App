@@ -894,8 +894,35 @@ select {
   margin-top: 2rem;
 }
 
+.audit-progress-card {
+  padding: 1.25rem !important;
+}
+
+.audit-progress-heading,
+.audit-progress-description {
+  transform: translateX(0.35rem);
+}
+
 .recent-audits-heading {
-  transform: translateX(0.4rem);
+  transform: translateX(0.7rem);
+}
+
+.recent-audits-last {
+  transform: translateX(-0.35rem);
+}
+
+.recent-audits-card {
+  overflow: hidden;
+}
+
+.recent-audits-header {
+  padding: 1.25rem !important;
+}
+
+@media (max-width: 639px) {
+  .recent-audits-header {
+    padding: 1rem !important;
+  }
 }
 
 .dashboard-actions {
@@ -1009,8 +1036,18 @@ select {
 }
 
 .stat-card {
-  padding-top: 1.2rem !important;
-  padding-bottom: 1.15rem !important;
+  min-height: 9.5rem;
+  padding: 1.25rem !important;
+}
+
+@media (max-width: 639px) {
+  .stat-card {
+    padding: 1rem !important;
+  }
+
+  .audit-progress-card {
+    padding: 1rem !important;
+  }
 }
 
 .stat-card-title,

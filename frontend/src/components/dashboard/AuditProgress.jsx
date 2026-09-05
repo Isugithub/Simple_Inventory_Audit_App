@@ -2,9 +2,9 @@ const AuditProgress = ({ progress }) => {
   const safeProgress = Math.min(100, Math.max(0, Number(progress) || 0));
 
   return (
-    <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm shadow-slate-200/40">
+    <div className="audit-progress-card rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm shadow-slate-200/40">
       <div className="mb-4 flex items-center justify-between">
-        <div>
+        <div className="audit-progress-heading">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Overview</p>
           <h2 className="mt-1 font-semibold text-slate-900">Audit progress</h2>
         </div>
@@ -20,7 +20,7 @@ const AuditProgress = ({ progress }) => {
 
       </div>
 
-      <p className="mt-3 text-sm text-slate-500">
+      <p className="audit-progress-description mt-3 text-sm text-slate-500">
         {safeProgress}% of inventory items have been audited.
       </p>
 
