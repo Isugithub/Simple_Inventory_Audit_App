@@ -730,6 +730,15 @@ select {
   margin-bottom: 0.8rem;
 }
 
+.report-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.report-table tbody tr + tr td {
+  border-top: 0.5rem solid #f6f8fc;
+}
+
 .audit-heading,
 .section-heading {
   display: flex;

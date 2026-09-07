@@ -29,37 +29,39 @@ const AuditReport = () => {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold">
-        Audit Report
-      </h1>
+    <div className="report-page min-h-screen px-5 py-6 sm:px-8 lg:px-10" style={{ marginTop: "30px" }}>
+      <h1 
+  style={{ marginLeft: "50px" }} 
+  className="text-3xl font-bold tracking-tight text-slate-900"
+>Audit Report
+</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
-        <div className="p-5 rounded-xl shadow bg-white">
-          <p>Total Items</p>
-          <h2 className="text-2xl font-bold">
+        <div className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-slate-200/80 bg-white p-5 text-center shadow-sm shadow-slate-200/50">
+          <p className="text-sm font-medium text-slate-500">Total Items</p>
+          <h2 className="mt-2 text-3xl font-bold text-slate-900">
             {report.totalItems}
           </h2>
         </div>
 
-        <div className="p-5 rounded-xl shadow bg-white">
-          <p>Matched</p>
-          <h2 className="text-2xl font-bold">
+        <div className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-slate-200/80 bg-white p-5 text-center shadow-sm shadow-slate-200/50">
+          <p className="text-sm font-medium text-slate-500">Matched</p>
+          <h2 className="mt-2 text-3xl font-bold text-slate-900">
             {report.matchedItems}
           </h2>
         </div>
 
-        <div className="p-5 rounded-xl shadow bg-white">
-          <p>Short</p>
-          <h2 className="text-2xl font-bold">
+        <div className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-slate-200/80 bg-white p-5 text-center shadow-sm shadow-slate-200/50">
+          <p className="text-sm font-medium text-slate-500">Short</p>
+          <h2 className="mt-2 text-3xl font-bold text-slate-900">
             {report.shortItems}
           </h2>
         </div>
 
-        <div className="p-5 rounded-xl shadow bg-white">
-          <p>Over</p>
-          <h2 className="text-2xl font-bold">
+        <div className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-slate-200/80 bg-white p-5 text-center shadow-sm shadow-slate-200/50">
+          <p className="text-sm font-medium text-slate-500">Over</p>
+          <h2 className="mt-2 text-3xl font-bold text-slate-900">
             {report.overItems}
           </h2>
         </div>
@@ -67,16 +69,16 @@ const AuditReport = () => {
       </div>
 
       <div className="report-variance-section">
-        <h2 className="report-variance-heading text-xl font-semibold">
+        <h2 className="report-variance-heading ml-[40px] text-xl font-semibold" style={{ marginLeft: "50px" }}>
           Inventory Variance
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="w-full bg-white rounded-xl shadow">
+          <table className="report-table w-full rounded-xl bg-white text-center shadow">
 
             <thead>
               <tr>
-                <th className="p-3 text-left">Item</th>
+                <th className="p-3">Item</th>
                 <th className="p-3">Expected</th>
                 <th className="p-3">Actual</th>
                 <th className="p-3">Variance</th>
