@@ -61,16 +61,16 @@ const AuditReport = () => {
       </div>
 
       <div className="report-variance-section">
-        <h2 className="report-variance-heading text-xl font-semibold">
+        <h2 className="report-variance-heading ml-[40px] text-xl font-semibold" style={{ marginLeft: "50px" }}>
           Inventory Variance
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="w-full bg-white rounded-xl shadow">
+          <table className="report-table w-full rounded-xl bg-white text-center shadow">
 
             <thead>
               <tr>
-                <th className="p-3 text-left">Item</th>
+                <th className="p-3">Item</th>
                 <th className="p-3">Expected</th>
                 <th className="p-3">Actual</th>
                 <th className="p-3">Variance</th>
