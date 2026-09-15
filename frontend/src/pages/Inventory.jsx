@@ -5,6 +5,7 @@ import {
   getInventory,
   updateInventoryItem,
 } from "../services/api";
+import BarcodeScanner from "../components/BarcodeScanner";
 
 const emptyForm = {
   name: "",
@@ -22,6 +23,7 @@ const Inventory = () => {
   const [editingItem, setEditingItem] = useState(null);
   const [deleteCandidate, setDeleteCandidate] = useState(null);
   const [notice, setNotice] = useState("");
+  const [scannerOpen, setScannerOpen] = useState(false);
   const role = (JSON.parse(localStorage.getItem("inventory_auth_session") || "{}").role || "viewer")
     .trim()
     .toLowerCase()
@@ -46,6 +48,35 @@ const Inventory = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBarcodeDetected = (barcode) => {
+    const scannedSku = typeof barcode === "string" ? barcode.trim() : "";
+    if (!scannedSku) {
+      setNotice("The barcode could not be read. Try again with better lighting.");
+      return;
+    }
+    const matchedItem = items.find(
+      (item) => item.sku?.trim().toLowerCase() === scannedSku.toLowerCase(),
+    );
+
+    setForm((prev) => ({
+      ...prev,
+      sku: scannedSku,
+      ...(matchedItem
+        ? {
+            name: matchedItem.name || "",
+            expectedQuantity: String(matchedItem.expectedQuantity ?? ""),
+            category: matchedItem.category || "",
+          }
+        : {}),
+    }));
+    setScannerOpen(false);
+    setNotice(
+      matchedItem
+        ? "Barcode matched an existing item. Review the details before saving."
+        : "Barcode scanned. Complete the remaining details before saving.",
+    );
   };
 
   const handleSubmit = async (event) => {
@@ -150,14 +181,24 @@ const Inventory = () => {
         </div>
         <div className="form-field">
           <label htmlFor="inventory-sku">SKU</label>
-        <input
-          id="inventory-sku"
-          name="sku"
-          value={form.sku}
-          onChange={handleChange}
-          placeholder="e.g. CHOC-001"
-          required
-        />
+          <div className="sku-input-row">
+            <input
+              id="inventory-sku"
+              name="sku"
+              value={form.sku}
+              onChange={handleChange}
+              placeholder="e.g. CHOC-001"
+              required
+            />
+            <button
+              type="button"
+              className="scan-button"
+              onClick={() => setScannerOpen(true)}
+              aria-label="Scan barcode with camera"
+            >
+              Scan
+            </button>
+          </div>
         </div>
         <div className="form-field">
           <label htmlFor="inventory-quantity">Expected quantity</label>
@@ -200,6 +241,12 @@ const Inventory = () => {
         </div>
       </form>
       {notice && <p className="inventory-notice" role="status">{notice}</p>}
+      {scannerOpen && (
+        <BarcodeScanner
+          onDetected={handleBarcodeDetected}
+          onClose={() => setScannerOpen(false)}
+        />
+      )}
 
       <div className="inventory-table-wrap">
         <table>

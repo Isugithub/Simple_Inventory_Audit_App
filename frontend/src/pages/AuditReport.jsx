@@ -29,39 +29,33 @@ const AuditReport = () => {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold">
-        Audit Report
-      </h1>
+    <div className="report-page">
+      <div className="report-header">
+        <p className="report-eyebrow">Inventory control</p>
+        <h1 className="report-title">Audit Report</h1>
+        <p className="report-subtitle">Review the latest inventory count and identify quantity differences.</p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+      <div className="report-summary-grid">
 
-        <div className="p-5 rounded-xl shadow bg-white">
-          <p>Total Items</p>
-          <h2 className="text-2xl font-bold">
-            {report.totalItems}
-          </h2>
+        <div className="report-summary-card shadow bg-white">
+          <p className="report-card-label">Total Items</p>
+          <h2 className="report-card-value">{report.totalItems}</h2>
         </div>
 
-        <div className="p-5 rounded-xl shadow bg-white">
-          <p>Matched</p>
-          <h2 className="text-2xl font-bold">
-            {report.matchedItems}
-          </h2>
+        <div className="report-summary-card shadow bg-white">
+          <p className="report-card-label">Matched</p>
+          <h2 className="report-card-value">{report.matchedItems}</h2>
         </div>
 
-        <div className="p-5 rounded-xl shadow bg-white">
-          <p>Short</p>
-          <h2 className="text-2xl font-bold">
-            {report.shortItems}
-          </h2>
+        <div className="report-summary-card shadow bg-white">
+          <p className="report-card-label">Short</p>
+          <h2 className="report-card-value">{report.shortItems}</h2>
         </div>
 
-        <div className="p-5 rounded-xl shadow bg-white">
-          <p>Over</p>
-          <h2 className="text-2xl font-bold">
-            {report.overItems}
-          </h2>
+        <div className="report-summary-card shadow bg-white">
+          <p className="report-card-label">Over</p>
+          <h2 className="report-card-value">{report.overItems}</h2>
         </div>
 
       </div>
