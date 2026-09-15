@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
@@ -28,6 +28,15 @@ function App() {
     localStorage.removeItem("inventory_auth_session");
     setSession(null);
   };
+
+  useEffect(() => {
+    const handleAuthExpired = () => setSession(null);
+    window.addEventListener("inventory-auth-expired", handleAuthExpired);
+
+    return () => {
+      window.removeEventListener("inventory-auth-expired", handleAuthExpired);
+    };
+  }, []);
 
   if (!session) return <Login onLogin={handleLogin} />;
 

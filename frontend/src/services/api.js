@@ -14,6 +14,18 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("inventory_auth_token");
+      localStorage.removeItem("inventory_auth_session");
+      window.dispatchEvent(new Event("inventory-auth-expired"));
+    }
+    return Promise.reject(error);
+  },
+);
+
 export const login = (data) => API.post("/auth/login", data);
 export const signup = (data) => API.post("/auth/signup", data);
 

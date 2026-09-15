@@ -29,41 +29,33 @@ const AuditReport = () => {
   }
 
   return (
-    <div className="report-page min-h-screen px-5 py-6 sm:px-8 lg:px-10" style={{ marginTop: "30px" }}>
-      <h1 
-  style={{ marginLeft: "50px" }} 
-  className="text-3xl font-bold tracking-tight text-slate-900"
->Audit Report
-</h1>
+    <div className="report-page">
+      <div className="report-header">
+        <p className="report-eyebrow">Inventory control</p>
+        <h1 className="report-title">Audit Report</h1>
+        <p className="report-subtitle">Review the latest inventory count and identify quantity differences.</p>
+      </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="report-summary-grid">
 
-        <div className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-slate-200/80 bg-white p-5 text-center shadow-sm shadow-slate-200/50">
-          <p className="text-sm font-medium text-slate-500">Total Items</p>
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">
-            {report.totalItems}
-          </h2>
+        <div className="report-summary-card shadow bg-white">
+          <p className="report-card-label">Total Items</p>
+          <h2 className="report-card-value">{report.totalItems}</h2>
         </div>
 
-        <div className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-slate-200/80 bg-white p-5 text-center shadow-sm shadow-slate-200/50">
-          <p className="text-sm font-medium text-slate-500">Matched</p>
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">
-            {report.matchedItems}
-          </h2>
+        <div className="report-summary-card shadow bg-white">
+          <p className="report-card-label">Matched</p>
+          <h2 className="report-card-value">{report.matchedItems}</h2>
         </div>
 
-        <div className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-slate-200/80 bg-white p-5 text-center shadow-sm shadow-slate-200/50">
-          <p className="text-sm font-medium text-slate-500">Short</p>
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">
-            {report.shortItems}
-          </h2>
+        <div className="report-summary-card shadow bg-white">
+          <p className="report-card-label">Short</p>
+          <h2 className="report-card-value">{report.shortItems}</h2>
         </div>
 
-        <div className="flex min-h-28 flex-col items-center justify-center rounded-lg border border-slate-200/80 bg-white p-5 text-center shadow-sm shadow-slate-200/50">
-          <p className="text-sm font-medium text-slate-500">Over</p>
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">
-            {report.overItems}
-          </h2>
+        <div className="report-summary-card shadow bg-white">
+          <p className="report-card-label">Over</p>
+          <h2 className="report-card-value">{report.overItems}</h2>
         </div>
 
       </div>
