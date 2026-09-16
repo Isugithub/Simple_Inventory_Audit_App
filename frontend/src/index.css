@@ -1408,88 +1408,92 @@ a {
   .app-navbar {
     left: var(--sidebar-width);
   }
+}
 
-  @media (max-width: 1023px) {
-    .app-sidebar {
-      width: min(var(--sidebar-width), 85vw);
-    }
-
-    .menu-button {
-      flex-shrink: 0;
-    }
+@media (max-width: 1023px) {
+  .app-sidebar {
+    width: min(var(--sidebar-width), 85vw);
   }
 
-  @media (max-width: 639px) {
-    .inventory-page {
-      padding: 1.25rem;
-    }
+  .menu-button {
+    flex-shrink: 0;
+  }
+}
 
-    .audit-page {
-      padding: 1.25rem;
-    }
-
-    .audit-heading {
-      align-items: flex-start;
-    }
-
-    .audit-heading h1 {
-      font-size: 1.9rem;
-    }
-
-    .audit-form {
-      grid-template-columns: 1fr;
-    }
-
-    .audit-submit {
-      grid-column: auto;
-    }
-
-    .audit-submit button {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .audit-record-title,
-    .audit-metrics,
-    .section-heading {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    .inventory-heading {
-      align-items: flex-start;
-    }
-
-    .inventory-heading h1 {
-      font-size: 1.9rem;
-    }
-
-    .inventory-form {
-      grid-template-columns: 1fr;
-    }
-
-    .sku-input-row {
-      align-items: stretch;
-    }
-
-    .scan-button {
-      padding-inline: 0.8rem;
-    }
-
-    .form-submit {
-      margin-top: 0.25rem;
-      grid-column: auto;
-    }
-
-    .form-submit button {
-      width: 100%;
-    }
-
-    .dashboard-page {
-      padding: 1.25rem;
-    }
+@media (max-width: 639px) {
+  .inventory-page {
+    padding: 1.25rem;
   }
 
+  .audit-page {
+    padding: 1.25rem;
+  }
+
+  .audit-heading {
+    align-items: flex-start;
+  }
+
+  .audit-heading h1 {
+    font-size: 1.9rem;
+  }
+
+  .audit-form {
+    grid-template-columns: 1fr;
+  }
+
+  .audit-submit {
+    grid-column: auto;
+  }
+
+  .audit-submit button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .audit-record-title,
+  .audit-metrics,
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .inventory-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .inventory-heading h1 {
+    font-size: 1.9rem;
+  }
+
+  .inventory-form {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1rem;
+  }
+
+  .sku-input-row {
+    align-items: stretch;
+  }
+
+  .scan-button {
+    padding-inline: 0.8rem;
+  }
+
+  .form-submit {
+    margin-top: 0.25rem;
+    grid-column: auto;
+  }
+
+  .form-submit button {
+    width: 100%;
+  }
+
+  .dashboard-page {
+    padding: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .app-main {
     margin-left: var(--sidebar-width);
   }
