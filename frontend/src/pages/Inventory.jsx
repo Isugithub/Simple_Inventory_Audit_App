@@ -56,24 +56,40 @@ const Inventory = () => {
       setNotice("The barcode could not be read. Try again with better lighting.");
       return;
     }
+    const hasScannedItem = Boolean(form.sku.trim());
     const matchedItem = items.find(
       (item) => item.sku?.trim().toLowerCase() === scannedSku.toLowerCase(),
     );
 
     setForm((prev) => ({
       ...prev,
-      sku: scannedSku,
-      ...(matchedItem
+      ...(hasScannedItem
         ? {
+            sku: prev.sku,
+            expectedQuantity: String(
+              (Number(prev.expectedQuantity) || 0) + 1,
+            ),
+          }
+        : matchedItem
+        ? {
+            sku: scannedSku,
             name: matchedItem.name || "",
-            expectedQuantity: String(matchedItem.expectedQuantity ?? ""),
+            expectedQuantity: String(
+              (Number(matchedItem.expectedQuantity) || 0) + 1,
+            ),
             category: matchedItem.category || "",
           }
-        : {}),
+        : {
+            sku: scannedSku,
+            expectedQuantity: "1",
+          }),
     }));
-    setScannerOpen(false);
     setNotice(
-      matchedItem
+      hasScannedItem
+        ? `Item scanned. SKU remains ${form.sku}; expected quantity is now ${
+            (Number(form.expectedQuantity) || 0) + 1
+          }.`
+        : matchedItem
         ? "Barcode matched an existing item. Review the details before saving."
         : "Barcode scanned. Complete the remaining details before saving.",
     );

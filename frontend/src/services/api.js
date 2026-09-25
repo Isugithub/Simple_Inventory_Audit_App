@@ -2,7 +2,9 @@ import axios from "axios";
 
 const apiBaseUrl =
   import.meta.env.VITE_API_URL ||
-  "https://inventory-backend-omega-inky.vercel.app/api";
+  (import.meta.env.DEV
+    ? "http://localhost:5000/api"
+    : "https://inventory-backend-omega-inky.vercel.app/api");
 
 const API = axios.create({
   baseURL: apiBaseUrl,
