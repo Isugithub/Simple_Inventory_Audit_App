@@ -6,7 +6,7 @@ const BarcodeScanner = ({ onDetected, onClose }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const controlsRef = useRef(null);
-  const detectedRef = useRef(false);
+  const lastDetectedAtRef = useRef(0);
   const onDetectedRef = useRef(onDetected);
   const [error, setError] = useState("");
   const [cameraReady, setCameraReady] = useState(false);
@@ -37,6 +37,7 @@ const BarcodeScanner = ({ onDetected, onClose }) => {
       if (value) {
         setScanState("Barcode found");
         onDetectedRef.current(value);
+        setScanState("Searching for the next barcode...");
       } else {
         setError("No barcode was found in that photo. Crop closer and try again.");
         setScanState("Scan failed");
@@ -61,24 +62,31 @@ const BarcodeScanner = ({ onDetected, onClose }) => {
     const frameReader = new BrowserMultiFormatReader(undefined, {
       delayBetweenScanAttempts: 150,
     });
+    const scanCooldown = 1200;
     let mounted = true;
     let readinessTimer;
     let frameTimer;
 
     const handleResult = (result) => {
-      if (!mounted || detectedRef.current || !result || typeof result.getText !== "function") {
+      if (!mounted || !result || typeof result.getText !== "function") {
         return;
       }
 
       const value = result.getText().trim();
       if (!value) return;
 
-      detectedRef.current = true;
+      const now = Date.now();
+      if (now - lastDetectedAtRef.current < scanCooldown) return;
+
+      lastDetectedAtRef.current = now;
       setScanState("Processing barcode...");
       setProcessing(true);
-      controlsRef.current?.stop();
       window.setTimeout(() => {
-        if (mounted) onDetectedRef.current(value);
+        if (mounted) {
+          onDetectedRef.current(value);
+          setProcessing(false);
+          setScanState("Searching for the next barcode...");
+        }
       }, 250);
     };
 
@@ -111,7 +119,7 @@ const BarcodeScanner = ({ onDetected, onClose }) => {
           frameTimer = window.setInterval(() => {
             const video = videoRef.current;
             const canvas = canvasRef.current;
-            if (!video || !canvas || video.readyState < 2 || video.videoWidth === 0 || detectedRef.current) {
+            if (!video || !canvas || video.readyState < 2 || video.videoWidth === 0) {
               return;
             }
 
@@ -256,7 +264,7 @@ const BarcodeScanner = ({ onDetected, onClose }) => {
         </label>
 
         <button type="button" className="scanner-cancel" onClick={onClose}>
-          Cancel
+          Done scanning
         </button>
       </section>
     </div>
